@@ -79,6 +79,16 @@ public class PlayerMove : MonoBehaviour
             rigidbody.MovePosition(transform.position + (Vector3.back * speed * Time.deltaTime));
         }
 
+
+    }
+
+    private void SpinAttack()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+
+
+        }
     }
 
 }
