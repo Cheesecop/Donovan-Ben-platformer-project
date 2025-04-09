@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
-    public PlayerMove PlayerMove;
+    public PlayerMove playerMove;
 
     public TMP_Text livesText;
 
@@ -15,7 +15,7 @@ public class UI_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        livesText.text = "Lives: " + PlayerMove.lives; //Lives text is set to the number of lives
+        livesText.text = "Lives: " + playerMove.lives; //Lives text is set to the number of lives
 
 
     }
