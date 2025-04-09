@@ -23,6 +23,8 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMovement();
+        SpinAttack();
+
     }
 
     private void Jump()
@@ -46,10 +48,6 @@ public class PlayerMove : MonoBehaviour
             onGround = true;
         }
 
-
-
-
-
         return onGround;
 
 
@@ -69,27 +67,42 @@ public class PlayerMove : MonoBehaviour
             //transform.position += Vector3.left * speed * Time.deltaTime;
             rigidbody.MovePosition(transform.position + (Vector3.left * speed * Time.deltaTime));
         }
+
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             //transform.position += Vector3.left * speed * Time.deltaTime;
             rigidbody.MovePosition(transform.position + (Vector3.forward * speed * Time.deltaTime));
         }
+
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             //transform.position += Vector3.left * speed * Time.deltaTime;
             rigidbody.MovePosition(transform.position + (Vector3.back * speed * Time.deltaTime));
         }
 
-
     }
+
+    public Material spin;
+    public Material orange;
+    public bool attacking = false;
+    
 
     private void SpinAttack()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
-
+            attacking = true;
+            gameObject.GetComponent<MeshRenderer>().material = spin;
+            
+            StartCoroutine(SpinWait());
 
         }
     }
+    private IEnumerator SpinWait()
+    {
+        yield return new WaitForSeconds (1f);
+        attacking = false;
+        gameObject.GetComponent<MeshRenderer>().material = orange;
 
+    }
 }
