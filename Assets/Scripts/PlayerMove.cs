@@ -23,6 +23,8 @@ public class PlayerMove : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMovement();
+        SpinAttack();
+
     }
 
     private void Jump()
@@ -45,10 +47,6 @@ public class PlayerMove : MonoBehaviour
         {
             onGround = true;
         }
-
-
-
-
 
         return onGround;
 
@@ -80,14 +78,25 @@ public class PlayerMove : MonoBehaviour
             rigidbody.MovePosition(transform.position + (Vector3.back * speed * Time.deltaTime));
         }
 
+    }
+
+    public Material spin;
+    public Material orange;
+    
+    private IEnumerator SpinWait()
+    {
+        yield return new WaitForSeconds (1f);
+        gameObject.GetComponent<MeshRenderer>().material = orange;
 
     }
 
     private void SpinAttack()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKey(KeyCode.E))
         {
-
+            gameObject.GetComponent<MeshRenderer>().material = spin;
+            
+            StartCoroutine(SpinWait());
 
         }
     }
