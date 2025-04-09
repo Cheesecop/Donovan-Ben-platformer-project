@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
     public float jumpForce = 8f;
     private new Rigidbody rigidbody;
     public float speed;
-    public int lives;
+    public int lives = 3;
     // Start is called before the first frame update
     void Start()
     {
