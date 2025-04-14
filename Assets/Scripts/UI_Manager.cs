@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class UI_Manager : MonoBehaviour
 {
     public PlayerMove playerMove;
-
+    
     public TMP_Text livesText;
 
 
@@ -19,4 +19,14 @@ public class UI_Manager : MonoBehaviour
 
 
     }
+
+    public void PlayPressed(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+    public void QuitPressed()
+    {
+        Application.Quit();
+    }
+
 }
