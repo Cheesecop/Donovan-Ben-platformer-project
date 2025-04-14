@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8181854083627741006}
   - component: {fileID: 468635307674666739}
   - component: {fileID: 8954290960325822326}
-  - component: {fileID: 4638136255335558847}
+  - component: {fileID: 6490518740765943197}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -137,7 +137,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &4638136255335558847
+--- !u!114 &6490518740765943197
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,14 +146,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 4583929615559478269}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08fbff3d37086c545b09106bca2d0c0a, type: 3}
+  m_Script: {fileID: 11500000, guid: e568df1be60b23f48a3d7998fa8d45e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 8
   speed: 10
   lives: 3
+  jumpForce: 8
   spin: {fileID: 2100000, guid: f534819be056e884c9cbdd1fcfcb8ff4, type: 2}
   orange: {fileID: 2100000, guid: f4d779d7c2873f345a16601ea2d3bb9c, type: 2}
+  attacking: 0
 --- !u!1 &8357429681347492602
 GameObject:
   m_ObjectHideFlags: 0

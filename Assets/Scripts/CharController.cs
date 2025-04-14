@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
@@ -13,13 +14,14 @@ using UnityEngine;
  * 
  * You may look at this script and try to understand it if you want some extra practice reading code though :D
  */
- 
-public class CharController : MonoBehaviour {
+
+public class CharController : MonoBehaviour
+{
 
     //A boolean value that will tell you if you are within .1 Unity Unit from the ground
     private bool is_grounded;
     //The rigid body attached to the player
-    private Rigidbody body;
+    private new Rigidbody rigidbody;
     //how close are we to a wall on our left side
     private float distance_to_wall_left = 2f;
     //how close are we to a wall on our right side
@@ -29,11 +31,16 @@ public class CharController : MonoBehaviour {
     //how close are we to a wall going backwards
     private float distance_to_wall_back = 2f;
 
+    public float speed = 10;
+    public int lives = 3;
+    public float jumpForce = 8f;
+
+
     //Start is a function that is called once when the object is Instatiated. 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        body = GetComponent<Rigidbody>();
+        rigidbody = GetComponent<Rigidbody>();
 
     }
 
@@ -41,8 +48,8 @@ public class CharController : MonoBehaviour {
     void Update()
     {
 
-        float translation = Input.GetAxis("Vertical") * 10 * Time.deltaTime;
-        float straffe = Input.GetAxis("Horizontal") * 10 * Time.deltaTime;
+        float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        float straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
         if (!is_grounded)
             straffe /= 2;
@@ -65,12 +72,37 @@ public class CharController : MonoBehaviour {
         transform.Translate(straffe, 0, translation);
 
 
-
+        Jump();
 
         if (Input.GetKeyDown("escape"))
         {
             Cursor.lockState = CursorLockMode.None;
         }
+
+    }
+    private void Jump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && OnGround())
+        {
+            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
+
+    }
+
+
+    private bool OnGround()
+    {
+        bool onGround = false;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.2f))
+        {
+            onGround = true;
+        }
+
+        return onGround;
+
 
     }
 
@@ -79,6 +111,7 @@ public class CharController : MonoBehaviour {
         DistanceToWall();
         Vector3 oldRot = transform.rotation.eulerAngles;
         transform.rotation = Quaternion.Euler(0, oldRot.y, 0);
+        SpinAttack();
     }
 
     private void DistanceToWall()
@@ -140,5 +173,29 @@ public class CharController : MonoBehaviour {
             is_grounded = false;
         }
 
+
+    }
+
+    public Material spin;
+    public Material orange;
+    public bool attacking = false;
+
+
+    private void SpinAttack()
+    {
+        if (Input.GetKey(KeyCode.E))
+        {
+            attacking = true;
+            gameObject.GetComponent<MeshRenderer>().material = spin;
+
+            StartCoroutine(SpinWait());
+
+        }
+    }
+    private IEnumerator SpinWait()
+    {
+        yield return new WaitForSeconds(1f);
+        attacking = false;
+        gameObject.GetComponent<MeshRenderer>().material = orange;
     }
 }
