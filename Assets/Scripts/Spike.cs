@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Spike : MonoBehaviour
 {
-    public PlayerMove playerMove;
+    public CharController charController;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<PlayerMove>())
+        if (collision.gameObject.GetComponent<CharController>())
         {
-            playerMove.lives--;
+            charController.lives--;
         }
     }
 }
