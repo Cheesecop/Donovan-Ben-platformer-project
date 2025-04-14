@@ -8,7 +8,7 @@ public class CharController : MonoBehaviour
 {
 
     //A boolean value that will tell you if you are within .1 Unity Unit from the ground
-    private bool OnGround;
+    private bool grounded;
     //The rigid body attached to the player
     private new Rigidbody rigidbody;
     //how close are we to a wall on our left side
@@ -19,28 +19,39 @@ public class CharController : MonoBehaviour
     private float distance_to_wall_forward = 2f;
     //how close are we to a wall going backwards
     private float distance_to_wall_back = 2f;
+    //a position for the spawn point
+    private Vector3 spawnPoint;
 
+    //the float that affects speeed
     public float speed = 10;
+    //the players lives
     public int lives = 3;
+    //the multiplier for jumping
     public float jumpForce = 8f;
 
+    //the number of fruit the player has
     public int fruitCount = 0;
-    public int fruitThresh = 1;
+    //the threshold for how many fruit you need for an extra life
+    public int fruitThresh = 20;
 
 
 
     //Start is a function that is called once when the object is Instatiated. 
     void Start()
     {
+        //
         Cursor.lockState = CursorLockMode.Locked;
+        //make the rigidbody for the player on start
         rigidbody = GetComponent<Rigidbody>();
+        //Create the spawn point when the game starts
+        spawnPoint = transform.position;
 
     }
 
     // Update is a function that is called once per frame
     void Update()
     {
-
+        //checking each framme for if the player jumps
         Jump();
 
         if (Input.GetKeyDown("escape"))
@@ -48,7 +59,7 @@ public class CharController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-
+        //if you collect enough fruit, the lives go up
         if (fruitCount >= fruitThresh)
         {
             fruitCount -= fruitThresh;
@@ -72,10 +83,10 @@ public class CharController : MonoBehaviour
         float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         float straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
-        if (!OnGround)
+        if (!grounded)
             straffe /= 2;
 
-        if (!OnGround)
+        if (!grounded)
             translation /= 2;
 
 
@@ -98,7 +109,8 @@ public class CharController : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && OnGround == true)
+        //if player presses space while grounded
+        if (Input.GetKeyDown(KeyCode.Space) && grounded == true)
         {
             rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -159,11 +171,11 @@ public class CharController : MonoBehaviour
         //Raycast down to find the ground
         if (Physics.Raycast(transform.position, -transform.up, 1.1f))
         {
-            OnGround = true;
+            grounded = true;
         }
         else
         {
-            OnGround = false;
+            grounded = false;
         }
 
 
@@ -173,6 +185,7 @@ public class CharController : MonoBehaviour
     public Material orange;
     public bool attacking = false;
 
+    //if the player presses E, do the spin attack
     private void SpinAttack()
     {
         if (Input.GetKey(KeyCode.E))
@@ -189,5 +202,10 @@ public class CharController : MonoBehaviour
         yield return new WaitForSeconds(1f);
         attacking = false;
         gameObject.GetComponent<MeshRenderer>().material = orange;
+    }
+
+    public void Respawn()
+    {
+        transform.position = spawnPoint;
     }
 }

@@ -11,6 +11,7 @@ public class Spike : MonoBehaviour
         if (collision.gameObject.GetComponent<CharController>())
         {
             charController.lives--;
+            charController.Respawn();
         }
     }
 }
