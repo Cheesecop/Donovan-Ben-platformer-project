@@ -17,8 +17,11 @@ public class UI_Manager : MonoBehaviour
     void Update()
     {
         livesText.text = "Lives: " + charController.lives; //Lives text is set to the number of lives
-        fruitText.text = "Wumpa Fruit: " + charController.fruitCount;
-
+        fruitText.text = "Wumpa Fruit: " + charController.fruitCount; //Fruit text is set to the number of fruit
+        if (charController.lives <= 0)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     public void PlayPressed(int sceneIndex)
@@ -29,5 +32,8 @@ public class UI_Manager : MonoBehaviour
     {
         Application.Quit();
     }
-
+    public void ReplayPressed(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
 }
