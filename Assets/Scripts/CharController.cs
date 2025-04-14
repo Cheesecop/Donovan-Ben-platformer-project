@@ -19,7 +19,7 @@ public class CharController : MonoBehaviour
 {
 
     //A boolean value that will tell you if you are within .1 Unity Unit from the ground
-    private bool is_grounded;
+    private bool OnGround;
     //The rigid body attached to the player
     private new Rigidbody rigidbody;
     //how close are we to a wall on our left side
@@ -48,13 +48,34 @@ public class CharController : MonoBehaviour
     void Update()
     {
 
+        Jump();
+
+        if (Input.GetKeyDown("escape"))
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+    }
+
+    private void FixedUpdate()
+    {
+        PlayerMovement();
+        DistanceToWall();
+        Vector3 oldRot = transform.rotation.eulerAngles;
+        transform.rotation = Quaternion.Euler(0, oldRot.y, 0);
+        SpinAttack();
+    }
+
+    private void PlayerMovement()
+    {
+
         float translation = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         float straffe = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
-        if (!is_grounded)
+        if (!OnGround)
             straffe /= 2;
 
-        if (!is_grounded)
+        if (!OnGround)
             translation /= 2;
 
 
@@ -66,23 +87,18 @@ public class CharController : MonoBehaviour
         if ((distance_to_wall_right < .6 && straffe > 0) || (distance_to_wall_left < .6 && straffe < 0))
         {
             straffe = 0;
-        }
-
+        }      
+        
         //Translate to move.
         transform.Translate(straffe, 0, translation);
 
 
-        Jump();
-
-        if (Input.GetKeyDown("escape"))
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-
     }
+
+
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && OnGround())
+        if (Input.GetKeyDown(KeyCode.Space) && OnGround == true)
         {
             rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
         }
@@ -90,29 +106,6 @@ public class CharController : MonoBehaviour
     }
 
 
-    private bool OnGround()
-    {
-        bool onGround = false;
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, 1.2f))
-        {
-            onGround = true;
-        }
-
-        return onGround;
-
-
-    }
-
-    private void FixedUpdate()
-    {
-        DistanceToWall();
-        Vector3 oldRot = transform.rotation.eulerAngles;
-        transform.rotation = Quaternion.Euler(0, oldRot.y, 0);
-        SpinAttack();
-    }
 
     private void DistanceToWall()
     {
@@ -166,11 +159,11 @@ public class CharController : MonoBehaviour
         //Raycast down to find the ground
         if (Physics.Raycast(transform.position, -transform.up, 1.1f))
         {
-            is_grounded = true;
+            OnGround = true;
         }
         else
         {
-            is_grounded = false;
+            OnGround = false;
         }
 
 
@@ -179,7 +172,6 @@ public class CharController : MonoBehaviour
     public Material spin;
     public Material orange;
     public bool attacking = false;
-
 
     private void SpinAttack()
     {

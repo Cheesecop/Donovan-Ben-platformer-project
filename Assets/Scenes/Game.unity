@@ -136,9 +136,9 @@ PrefabInstance:
       value: Spike
       objectReference: {fileID: 0}
     - target: {fileID: 4500408766058605148, guid: 1c540d7311cd9174e8a2c5440f99eebb, type: 3}
-      propertyPath: playerMove
+      propertyPath: charController
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1420718950}
     - target: {fileID: 8616485841523527830, guid: 1c540d7311cd9174e8a2c5440f99eebb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5715146
