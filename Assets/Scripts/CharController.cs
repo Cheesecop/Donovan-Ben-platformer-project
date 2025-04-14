@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 
 public class CharController : MonoBehaviour
@@ -39,8 +40,6 @@ public class CharController : MonoBehaviour
     //Start is a function that is called once when the object is Instatiated. 
     void Start()
     {
-        //
-        Cursor.lockState = CursorLockMode.Locked;
         //make the rigidbody for the player on start
         rigidbody = GetComponent<Rigidbody>();
         //Create the spawn point when the game starts
@@ -53,6 +52,13 @@ public class CharController : MonoBehaviour
     {
         //checking each framme for if the player jumps
         Jump();
+
+        //if character goes below -100y respawn
+        if (gameObject.transform.position.y <= -100)
+        {
+            lives--;
+            Respawn();
+        }
 
         if (Input.GetKeyDown("escape"))
         {
@@ -207,5 +213,6 @@ public class CharController : MonoBehaviour
     public void Respawn()
     {
         transform.position = spawnPoint;
+        rigidbody.velocity = Vector3.zero;
     }
 }
