@@ -4,17 +4,6 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
-
-
-
-/*
- * 
- * DO NOT! edit this script create your own and add it as a compenant to this game object 
- * 
- * 
- * You may look at this script and try to understand it if you want some extra practice reading code though :D
- */
-
 public class CharController : MonoBehaviour
 {
 
@@ -35,6 +24,10 @@ public class CharController : MonoBehaviour
     public int lives = 3;
     public float jumpForce = 8f;
 
+    public int fruitCount = 0;
+    public int fruitThresh = 1;
+
+
 
     //Start is a function that is called once when the object is Instatiated. 
     void Start()
@@ -53,6 +46,13 @@ public class CharController : MonoBehaviour
         if (Input.GetKeyDown("escape"))
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+
+
+        if (fruitCount >= fruitThresh)
+        {
+            fruitCount -= fruitThresh;
+            lives++;
         }
 
     }
@@ -87,8 +87,8 @@ public class CharController : MonoBehaviour
         if ((distance_to_wall_right < .6 && straffe > 0) || (distance_to_wall_left < .6 && straffe < 0))
         {
             straffe = 0;
-        }      
-        
+        }
+
         //Translate to move.
         transform.Translate(straffe, 0, translation);
 

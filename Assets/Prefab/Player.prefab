@@ -152,6 +152,8 @@ MonoBehaviour:
   speed: 10
   lives: 3
   jumpForce: 8
+  fruitCount: 0
+  fruitThresh: 20
   spin: {fileID: 2100000, guid: f534819be056e884c9cbdd1fcfcb8ff4, type: 2}
   orange: {fileID: 2100000, guid: f4d779d7c2873f345a16601ea2d3bb9c, type: 2}
   attacking: 0
