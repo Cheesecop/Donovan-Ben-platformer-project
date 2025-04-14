@@ -31,17 +31,17 @@ public class BasicEnemyMovement : MonoBehaviour
     {
         if (rotation == true)
         {
-            
+
             MoveEnemy();
             TurnAroundLeft();
         }
-        else if(rotation == false) 
+        else if (rotation == false)
         {
             MoveEnemy();
             TurnAroundRight();
-        
+
         }
-        
+
     }
 
     private void MoveEnemy()
