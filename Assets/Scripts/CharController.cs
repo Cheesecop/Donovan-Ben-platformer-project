@@ -93,8 +93,6 @@ public class CharController : MonoBehaviour
         if (!grounded)
             straffe /= 2;
 
-        if (!grounded)
-            translation /= 2;
 
 
         //if I'm too close to a wall, don't go that direction anymore
