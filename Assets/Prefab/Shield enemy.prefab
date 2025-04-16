@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1698548c64642954ebdc67f6432a66c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charController: {fileID: 0}
+  charController: {fileID: 6490518740765943197, guid: 6a0e6de1e9b04f541a16964dffc922c4, type: 3}
 --- !u!114 &8779204410644967222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5108f117d97053a45bd48d39e20dd1ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 4
   direction: {x: 0, y: 0, z: 0}
   distance: 1.75
   rotation: 1

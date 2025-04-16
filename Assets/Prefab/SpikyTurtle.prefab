@@ -242,7 +242,7 @@ MonoBehaviour:
   speed: 5
   direction: {x: 0, y: 0, z: 0}
   distance: 2.2
-  rotation: 0
+  rotation: 1
 --- !u!114 &5610112313296926834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -255,4 +255,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d376acef64a6d4f998f496341f77fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  charController: {fileID: 0}
+  charController: {fileID: 6490518740765943197, guid: 6a0e6de1e9b04f541a16964dffc922c4, type: 3}
