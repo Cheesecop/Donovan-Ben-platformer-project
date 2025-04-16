@@ -17,7 +17,7 @@ public class SpinEnemy : MonoBehaviour
         else
         {
             charController.lives--;
-            print("lost life");
+            charController.Respawn();
         }
     }
 }
