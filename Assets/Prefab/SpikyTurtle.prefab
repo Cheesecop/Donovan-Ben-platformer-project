@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 7984147020224491173}
   - component: {fileID: 5181149533197946041}
   - component: {fileID: 3108086504482401202}
+  - component: {fileID: 5610112313296926834}
   m_Layer: 0
   m_Name: SpikyTurtle
   m_TagString: Untagged
@@ -242,3 +243,16 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   distance: 2.2
   rotation: 0
+--- !u!114 &5610112313296926834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297808281663069344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13d376acef64a6d4f998f496341f77fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  charController: {fileID: 0}
