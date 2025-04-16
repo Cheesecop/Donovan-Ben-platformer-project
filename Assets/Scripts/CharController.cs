@@ -20,8 +20,9 @@ public class CharController : MonoBehaviour
     private float distance_to_wall_forward = 2f;
     //how close are we to a wall going backwards
     private float distance_to_wall_back = 2f;
+
     //a position for the spawn point
-    private Vector3 spawnPoint;
+    public Vector3 spawnPoint;
 
     //the float that affects speeed
     public float speed = 10;
@@ -92,8 +93,6 @@ public class CharController : MonoBehaviour
         if (!grounded)
             straffe /= 2;
 
-        if (!grounded)
-            translation /= 2;
 
 
         //if I'm too close to a wall, don't go that direction anymore
