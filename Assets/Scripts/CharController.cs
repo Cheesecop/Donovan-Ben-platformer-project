@@ -11,7 +11,7 @@ public class CharController : MonoBehaviour
     //A boolean value that will tell you if you are within .1 Unity Unit from the ground
     private bool grounded;
     //The rigid body attached to the player
-    private new Rigidbody rigidbody;
+    public new Rigidbody rigidbody;
     //how close are we to a wall on our left side
     private float distance_to_wall_left = 2f;
     //how close are we to a wall on our right side
