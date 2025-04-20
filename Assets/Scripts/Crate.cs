@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Crate : MonoBehaviour
 {
+    //Donovan and ben
+    //4/19/2025
+    // destroys the object and spawns fruit if stomped on or spin attacked
     public GameObject crateTop;
     public CharController charCtrl;
     public GameObject wumpaFruit;

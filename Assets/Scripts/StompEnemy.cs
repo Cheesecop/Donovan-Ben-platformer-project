@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class StompEnemy : MonoBehaviour
 {
+    //Donovan and ben
+    //4/19/2025
+    // handles destroying enemies after they have been jumped on
     public string targetTag = "BasicEnemy";
     private void OnCollisionEnter(Collision collision)
     {

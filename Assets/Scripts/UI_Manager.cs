@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class UI_Manager : MonoBehaviour
 {
+    //Donovan and ben
+    //4/19/2025
+    // handles player and game ui
     public CharController charController;
     
     public TMP_Text livesText;

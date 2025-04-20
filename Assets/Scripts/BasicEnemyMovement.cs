@@ -5,6 +5,10 @@ using UnityEngine.EventSystems;
 
 public class BasicEnemyMovement : MonoBehaviour
 {
+    //Donovan and ben
+    //4/19/2025
+    //handles basic left and right forward and back movement
+    
     public float speed = 10;
     public Vector3 direction;
     public float distance = 2.0f;

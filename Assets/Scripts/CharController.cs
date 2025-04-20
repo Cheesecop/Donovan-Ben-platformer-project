@@ -7,6 +7,9 @@ using UnityEngine.Rendering;
 
 public class CharController : MonoBehaviour
 {
+    //Donovan and ben
+    //4/19/2025
+    // handles character movement and attacking as well as lives and wumpa fruit storing
 
     //A boolean value that will tell you if you are within .1 Unity Unit from the ground
     private bool grounded;
